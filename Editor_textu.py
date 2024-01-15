@@ -34,39 +34,40 @@ garpike and stingray are also present.'''
 ]
 odelovac = "=" * 50
 #uzivatele registrovaNI
-user_1 = {"prihlasovaci jmeno" : "bob","heslo": "123"}
-user_2 = {"prihlasovaci jmeno" : "ann","heslo": "pass123"}
-user_3 = {"prihlasovaci jmeno" : "mike","heslo": "password123"}
-user_4 = {"prihlasovaci jmeno" : "liz","heslo": "pass123"}
+#user_1 = {"prihlasovaci jmeno" : "bob","heslo": "123"}
+#user_2 = {"prihlasovaci jmeno" : "ann","heslo": "pass123"}
+#user_3 = {"prihlasovaci jmeno" : "mike","heslo": "password123"}
+#user_4 = {"prihlasovaci jmeno" : "liz","heslo": "pass123"}
+user = {"bob" : "123",
+        "ann" : "pass123",
+        "mike" : "password123",
+        "liz" : "pas123"}
+#prihůaseni uzivatele
 prihlasovac_jmeno = input("Zadej své přihlašovací jméno: ")
 heslo = input("Zadej heslo: ")
 print(odelovac)
-if prihlasovac_jmeno == user_1["prihlasovaci jmeno"] and heslo == user_1["heslo"]:
+
+if user.get(prihlasovac_jmeno) == heslo:
     print("Zdravím mužes pokračovat dál do programu " + prihlasovac_jmeno)
-elif prihlasovac_jmeno == user_2["prihlasovaci jmeno"] and heslo == user_2["heslo"]:
-    print("Zdravím mužes pokračovat dál do programu " + prihlasovac_jmeno)  
-elif prihlasovac_jmeno == user_3["prihlasovaci jmeno"] and heslo == user_3["heslo"]:
-    print("Zdravím mužes pokračovat dál do programu " + prihlasovac_jmeno) 
-elif prihlasovac_jmeno == user_4["prihlasovaci jmeno"] and heslo == user_4["heslo"]:
-    print("Zdravím mužes pokračovat dál do programu " + prihlasovac_jmeno)   
 else:
     print("Zadané udaje nesouhlasí.\nUkončuji program!")
     quit()
 
 #uvítaní v programu
 delka_cary = len(odelovac)
-print("Máme pro tebe 3 texty k analýze.")
+pocet_textu = len(TEXTS)
+print(f"Máme pro tebe {pocet_textu} texty k analýze.")
 print(odelovac)
 print("Analyzátoru textu =)".upper().center(delka_cary))
 print(odelovac)
 
 #vyber textu
 
-cislo_textu = input("Vyber si číslo textu od 1 do 3: ")
+cislo_textu = input(f"Vyber si číslo textu od 1 do {pocet_textu}: ")
 if cislo_textu.isalpha():
     print("Zadal jsi pismena, Ukončuji program!")
     quit()
-elif 1<= int(cislo_textu) <=3 :
+elif 1<= int(cislo_textu) <= pocet_textu :
     vybrany_text = TEXTS[int(cislo_textu) - 1]
     #print("spravně")
 else:
@@ -79,26 +80,20 @@ slova = []
 for slovo in vybrany_text.split():
     slova_v_textu = slovo.strip(",.:-;!?")
     slova.append(slova_v_textu)
-#pocet s velkymi pismeny na zacatku
+# prace s textem
 slova_zacatek_velkym_pismeny = []
+slova_velka_pismena = []
+slova_mala_pismena = []
+cisla = []
 for slovo in slova:
         if slovo.istitle():
-            slova_zacatek_velkym_pismeny.append(slovo)
-#pocet s velkymi pismeny
-slova_velka_pismena = []
-for slovo in slova:
-        if slovo.isupper() and slovo.isalpha():
-            slova_velka_pismena.append(slovo)
-#pocet s malymi pismeny
-slova_mala_pismena = []
-for slovo in slova:
-     if slovo.islower():
-          slova_mala_pismena.append(slovo)
-# pocet cilse
-cisla = []
-for cislo in slova:
-     if cislo.isdigit():
-          cisla.append(cislo)
+            slova_zacatek_velkym_pismeny.append(slovo)     # velká písmena na zacatku
+        elif slovo.isupper() and slovo.isalpha():
+             slova_velka_pismena.append(slovo)             # velka pisemna
+        elif slovo.islower():
+             slova_mala_pismena.append(slovo)              # mala pismena
+        elif slovo.isdigit():
+             cisla.append(slovo)                           # cisla v textu
 # soucet vsech cisel
 total = 0
 for element in cisla:
