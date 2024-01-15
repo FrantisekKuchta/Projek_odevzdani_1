@@ -72,7 +72,7 @@ elif 1<= int(cislo_textu) <=3 :
 else:
     print("Dané číslo neni v razsahu vyběru ukoncuji program!")
     quit()
-    
+
 #práce s textem
 #počet slov
 slova = []
@@ -128,7 +128,7 @@ for slovo in slova:
      delka_slova[delka] += 1
 
 for delka in sorted(delka_slova):
-     print(f'{delka:3}| {"*" * delka_slova[delka]:20}| {delka_slova[delka]:^2}')
+     print(f'{delka:3}| {"*" * delka_slova[delka]:20}| {delka_slova[delka]:^1}')
   
      
         
